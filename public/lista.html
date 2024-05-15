@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista y Tabla con Tailwind CSS</title>
+  <link rel="stylesheet" href="../public/css/tailwind.css" >
+  <style>
+    .video-container {
+      display: none;
+    }
+    .video-container.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 p-6">
+
+  <!-- Lista de Productos -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-bold mb-4">Lista de Productos</h2>
+    <ul class="list-disc list-inside bg-white p-4 rounded shadow">
+      <li class="cursor-pointer" data-video="video1">Producto 1</li>
+      <li class="cursor-pointer" data-video="video2">Producto 2</li>
+      <li class="cursor-pointer" data-video="video3">Producto 3</li>
+    </ul>
+  </section>
+
+  <!-- Tabla de Productos -->
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Tabla de Productos</h2>
+    <table class="min-w-full bg-white rounded shadow">
+      <thead>
+        <tr>
+          <th class="py-2 px-4 bg-gray-200">Producto</th>
+          <th class="py-2 px-4 bg-gray-200">Descripción</th>
+          <th class="py-2 px-4 bg-gray-200">Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="cursor-pointer" data-video="video1">
+          <td class="py-2 px-4 border-b">Producto 1</td>
+          <td class="py-2 px-4 border-b">Descripción del Producto 1</td>
+          <td class="py-2 px-4 border-b">$10</td>
+        </tr>
+        <tr class="cursor-pointer" data-video="video2">
+          <td class="py-2 px-4 border-b">Producto 2</td>
+          <td class="py-2 px-4 border-b">Descripción del Producto 2</td>
+          <td class="py-2 px-4 border-b">$20</td>
+        </tr>
+        <tr class="cursor-pointer" data-video="video3">
+          <td class="py-2 px-4 border-b">Producto 3</td>
+          <td class="py-2 px-4 border-b">Descripción del Producto 3</td>
+          <td class="py-2 px-4 border-b">$30</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Contenedores de Video -->
+  <div id="video1" class="video-container mt-8">
+    <video controls class="w-full max-w-md mx-auto">
+      <source src="../videos/Curva de acumulación de especies.mp4" type="video/mp4">
+      Tu navegador no soporta la reproducción de video.
+    </video>
+  </div>
+  <div id="video2" class="video-container mt-8">
+    <video controls class="w-full max-w-md mx-auto">
+      <source src="ruta/al/video2.mp4" type="video/mp4">
+      Tu navegador no soporta la reproducción de video.
+    </video>
+  </div>
+  <div id="video3" class="video-container mt-8">
+    <video controls class="w-full max-w-md mx-auto">
+      <source src="ruta/al/video3.mp4" type="video/mp4">
+      Tu navegador no soporta la reproducción de video.
+    </video>
+  </div>
+
+  <script>
+    document.querySelectorAll('li[data-video], tr[data-video]').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.video-container').forEach(video => {
+          video.classList.remove('active');
+        });
+        document.getElementById(this.getAttribute('data-video')).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
+
